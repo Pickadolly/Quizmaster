@@ -15,6 +15,7 @@ const scoreDiv = document.getElementById("scoreContainer");
 let questions = [], resQ = {}, len = 0;
 let choices = ["A","B","C","D"];
 let answers = [];
+var checkAnswer;
 
 const req = async () => {
     const res = await fetch('https://opentdb.com/api.php?amount=10&category=27&difficulty=medium&type=multiple');
@@ -49,5 +50,3 @@ const req = async () => {
         questions.push(resQ);
         i++;
     }
-}
-
