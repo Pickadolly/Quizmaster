@@ -3,7 +3,7 @@
         width: 100%;
     }
 }
-@media only screen and (min-width: 992px){
+
 #container{
     margin : 20px auto;
     background-color: white;
@@ -137,14 +137,13 @@
     left:325px;
 }
 #scoreContainer p{
-    position: absolute;
+    position: left;
     display: block;
     width : 59px;
     height :59px;
     top:130px;
     left:325px;
-    font-size: 1.5em;
+    font-size: 4.5em;
     font-weight: bold;
-    text-align: center;
-}
+    text-align: left;
 }

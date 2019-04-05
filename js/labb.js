@@ -155,12 +155,12 @@ const req = async () => {
     const scorePerCent = Math.round(100 * score/questions.length);
     
     // choose the image based on the scorePerCent
-    let img = (scorePerCent >= 90) ? "img/s3.png" :
+    let img = (scorePerCent >= 80) ? "img/s3.png" :
             (scorePerCent >= 60) ? "img/s2.png" :
             "img/s1.png";
     
     scoreDiv.innerHTML = "<img src="+ img +">";
-    scoreDiv.innerHTML += "<p>"+ scorePerCent +"%</p>";
+    scoreDiv.innerHTML += "<p>You've scored: "+ scorePerCent +"%</p>";
     }   
 }
 
