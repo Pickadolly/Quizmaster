@@ -17,26 +17,36 @@ let choices = ["A","B","C","D"];
 let answers = [];
 var checkAnswer;
 
+// define an asynchronous function
 const req = async () => {
+    // fetch the url
     const res = await fetch('https://opentdb.com/api.php?amount=10&category=27&difficulty=medium&type=multiple');
+    // get the json result
     const json = await res.json();
     len = json.results.length;
     let i = 0;
+    // while i is less then length of json result do...
     while(i < len) {
         let j = 0, v = 0;
+        // generate a random number between 0-3
         var randomNumber = Math.floor(Math.random() * 4);
 
+        // while j is less than 4 do...
         while(j < 4) {
+            // if j is the same as randomNumber set x to correct answer
             if(j == randomNumber) {
                 x = json.results[i].correct_answer;
             } else {
+                // else set x to one of the incorrect answers (v)
                 x = json.results[i].incorrect_answers[v];
                 v++;
             }
+            // save answers to an array
             answers[j] = x;
             j++
         }
 
+        // generate the response object
         resQ = {
                 question : json.results[i].question,
                 imgSrc : "img/"+i+".jpg",
@@ -46,11 +56,12 @@ const req = async () => {
                 choiceC : answers[2],
                 choiceD : answers[3]                
         };
+        // push the response object to the questions array
         questions.push(resQ);
         i++;
     }
-    // create some variables
 
+    // created some variables
     const lastQuestion = questions.length - 1;
     let runningQuestion = 0;
     let count = 0;
@@ -92,7 +103,6 @@ const req = async () => {
     }
 
     // counter render
-
     function renderCounter(){
         if(count <= questionTime){
             counter.innerHTML = count;
@@ -113,8 +123,8 @@ const req = async () => {
         }
     }
 
+    
     // checkAnwer
-
     checkAnswer = function (answer){
         if( answer == questions[runningQuestion].correct){
             // answer is correct
@@ -154,9 +164,9 @@ const req = async () => {
     // calculate the amount of question percent answered by the user
     const scorePerCent = Math.round(100 * score/questions.length);
     
-    // choose the image based on the scorePerCent
+    // choose the image based on the scorePerCent & show the result
     let img = (scorePerCent >= 80) ? "img/s3.png" :
-            (scorePerCent >= 60) ? "img/s2.png" :
+            (scorePerCent >= 50) ? "img/s2.png" :
             "img/s1.png";
     
     scoreDiv.innerHTML = "<img src="+ img +">";
